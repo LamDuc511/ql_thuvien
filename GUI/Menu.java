@@ -7,7 +7,6 @@ package GUI;
 
 
 import DTO.ReaderDTO;
-import static com.sun.webkit.graphics.WCImage.getImage;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -51,6 +50,8 @@ public class Menu extends javax.swing.JFrame {
          cate.add(new category("Storage",JPnStorage));
          cate.add(new category("Default",JPnHome));
          cate.add(new category("Analyze",JPnAnalyze));
+         cate.add(new category("Author",JPnAuthor));
+         cate.add(new category("NXB",JPnNXB));
          controller.setEvent(cate);
         
          
@@ -86,20 +87,26 @@ public class Menu extends javax.swing.JFrame {
         JPnReader = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         LblReader = new javax.swing.JLabel();
+        JPnHome = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        JPnAuthor = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        LblAuthor = new javax.swing.JLabel();
+        JPnEmployee = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        LblEmployee = new javax.swing.JLabel();
         JPnService = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         LblService = new javax.swing.JLabel();
         JPnStorage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         LblStorage = new javax.swing.JLabel();
-        JPnHome = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        JPnNXB = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        LblAnalyze1 = new javax.swing.JLabel();
         JPnAnalyze = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         LblAnalyze = new javax.swing.JLabel();
-        JPnEmployee = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        LblEmployee = new javax.swing.JLabel();
         JPnContent = new javax.swing.JPanel();
 
         JPnStat.setBackground(new java.awt.Color(43, 152, 54));
@@ -193,34 +200,6 @@ public class Menu extends javax.swing.JFrame {
 
         Sidebar.add(JPnReader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 300, -1));
 
-        JPnService.setBackground(new java.awt.Color(43, 152, 64));
-        JPnService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_books_50px.png"))); // NOI18N
-        jLabel5.setText("jLabel1");
-        JPnService.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
-
-        LblService.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LblService.setForeground(new java.awt.Color(255, 255, 255));
-        LblService.setText("Mượn / trả");
-        JPnService.add(LblService, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
-
-        Sidebar.add(JPnService, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 300, -1));
-
-        JPnStorage.setBackground(new java.awt.Color(43, 152, 64));
-        JPnStorage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_homework_50px.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        JPnStorage.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
-
-        LblStorage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LblStorage.setForeground(new java.awt.Color(255, 255, 255));
-        LblStorage.setText("Kho");
-        JPnStorage.add(LblStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
-
-        Sidebar.add(JPnStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 300, -1));
-
         JPnHome.setBackground(new java.awt.Color(43, 152, 54));
         JPnHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -230,19 +209,24 @@ public class Menu extends javax.swing.JFrame {
 
         Sidebar.add(JPnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 110));
 
-        JPnAnalyze.setBackground(new java.awt.Color(43, 152, 64));
-        JPnAnalyze.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPnAuthor.setBackground(new java.awt.Color(43, 152, 64));
+        JPnAuthor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JPnAuthorMouseClicked(evt);
+            }
+        });
+        JPnAuthor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_analyze_50px_2.png"))); // NOI18N
-        jLabel9.setText("jLabel1");
-        JPnAnalyze.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_user_typing_using_typewriter_50px.png"))); // NOI18N
+        jLabel11.setText("jLabel1");
+        JPnAuthor.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
-        LblAnalyze.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LblAnalyze.setForeground(new java.awt.Color(255, 255, 255));
-        LblAnalyze.setText("Thống kê");
-        JPnAnalyze.add(LblAnalyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
+        LblAuthor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        LblAuthor.setText("Tác giả");
+        JPnAuthor.add(LblAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 150, -1));
 
-        Sidebar.add(JPnAnalyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 300, -1));
+        Sidebar.add(JPnAuthor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 300, -1));
 
         JPnEmployee.setBackground(new java.awt.Color(43, 152, 64));
         JPnEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,6 +247,62 @@ public class Menu extends javax.swing.JFrame {
 
         Sidebar.add(JPnEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 300, -1));
 
+        JPnService.setBackground(new java.awt.Color(43, 152, 64));
+        JPnService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_books_50px.png"))); // NOI18N
+        jLabel5.setText("jLabel1");
+        JPnService.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+
+        LblService.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblService.setForeground(new java.awt.Color(255, 255, 255));
+        LblService.setText("Mượn / trả");
+        JPnService.add(LblService, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
+
+        Sidebar.add(JPnService, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 300, -1));
+
+        JPnStorage.setBackground(new java.awt.Color(43, 152, 64));
+        JPnStorage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_homework_50px.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        JPnStorage.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+
+        LblStorage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblStorage.setForeground(new java.awt.Color(255, 255, 255));
+        LblStorage.setText("Kho");
+        JPnStorage.add(LblStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
+
+        Sidebar.add(JPnStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 300, -1));
+
+        JPnNXB.setBackground(new java.awt.Color(43, 152, 64));
+        JPnNXB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_supplier_50px_1.png"))); // NOI18N
+        jLabel13.setText("jLabel1");
+        JPnNXB.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+
+        LblAnalyze1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblAnalyze1.setForeground(new java.awt.Color(255, 255, 255));
+        LblAnalyze1.setText("Nhà xuất bản");
+        JPnNXB.add(LblAnalyze1, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
+
+        Sidebar.add(JPnNXB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 300, -1));
+
+        JPnAnalyze.setBackground(new java.awt.Color(43, 152, 64));
+        JPnAnalyze.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_analyze_50px_2.png"))); // NOI18N
+        jLabel9.setText("jLabel1");
+        JPnAnalyze.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
+
+        LblAnalyze.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LblAnalyze.setForeground(new java.awt.Color(255, 255, 255));
+        LblAnalyze.setText("Thống kê");
+        JPnAnalyze.add(LblAnalyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 15, 150, -1));
+
+        Sidebar.add(JPnAnalyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 300, -1));
+
         javax.swing.GroupLayout JPnContentLayout = new javax.swing.GroupLayout(JPnContent);
         JPnContent.setLayout(JPnContentLayout);
         JPnContentLayout.setHorizontalGroup(
@@ -271,7 +311,7 @@ public class Menu extends javax.swing.JFrame {
         );
         JPnContentLayout.setVerticalGroup(
             JPnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 656, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,11 +329,11 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(JPnContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(Sidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPnContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,6 +346,10 @@ public class Menu extends javax.swing.JFrame {
     private void JPnEmployeeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPnEmployeeMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_JPnEmployeeMousePressed
+
+    private void JPnAuthorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPnAuthorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JPnAuthorMouseClicked
 
     
     
@@ -360,16 +404,20 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPnAnalyze;
+    private javax.swing.JPanel JPnAuthor;
     private javax.swing.JPanel JPnBooks;
     private javax.swing.JPanel JPnContent;
     private javax.swing.JPanel JPnEmployee;
     private javax.swing.JPanel JPnHome;
+    private javax.swing.JPanel JPnNXB;
     private javax.swing.JPanel JPnReader;
     private javax.swing.JPanel JPnSearch;
     private javax.swing.JPanel JPnService;
     private javax.swing.JPanel JPnStat;
     private javax.swing.JPanel JPnStorage;
     private javax.swing.JLabel LblAnalyze;
+    private javax.swing.JLabel LblAnalyze1;
+    private javax.swing.JLabel LblAuthor;
     private javax.swing.JLabel LblBooks;
     private javax.swing.JLabel LblEmployee;
     private javax.swing.JLabel LblReader;
@@ -379,7 +427,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel Sidebar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

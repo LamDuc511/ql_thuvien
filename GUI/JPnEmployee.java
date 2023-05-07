@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import Others.*;
 import DAO.EmployeeDAO;
 import BUS.EmployeeBUS;
 import BUS.EmployeeBUS;
@@ -106,11 +107,12 @@ DefaultTableModel dtmNhanvien = new DefaultTableModel();
         btnSearch = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
         BtnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         JFAdd.setTitle("Thêm độc giả");
-        JFAdd.setPreferredSize(new java.awt.Dimension(700, 300));
 
         PnAdd.setBackground(new java.awt.Color(217, 237, 202));
         PnAdd.setMinimumSize(new java.awt.Dimension(611, 350));
@@ -469,6 +471,26 @@ DefaultTableModel dtmNhanvien = new DefaultTableModel();
         });
         jPanel4.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 90, 30));
 
+        btnExport.setBackground(new java.awt.Color(217, 237, 202));
+        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnExport.setText("Xuất");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 100, 30));
+
+        btnImport.setBackground(new java.awt.Color(217, 237, 202));
+        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnImport.setText("Nhập");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 100, 30));
+
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 730, 70));
 
         BtnUpdate.setBackground(new java.awt.Color(217, 237, 202));
@@ -668,6 +690,25 @@ DefaultTableModel dtmNhanvien = new DefaultTableModel();
             JOptionPane.showMessageDialog(null,"Edit Successfully.");
         }
     }//GEN-LAST:event_btnEdit2ActionPerformed
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        // TODO add your handling code here:
+        xuLyXuatExcel();
+    }//GEN-LAST:event_btnExportActionPerformed
+
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn nhập?");
+        switch(result){
+            case JOptionPane.YES_OPTION:
+                xulyNhapExcel();
+                break;
+            case JOptionPane.NO_OPTION:
+                break;
+            case JOptionPane.CANCEL_OPTION:
+                break;
+        }
+    }//GEN-LAST:event_btnImportActionPerformed
 public void loadtblNhanvien(){
     dtmNhanvien.setRowCount(0);
        dsnv = EmployeeBUS.getdsnv();
@@ -701,6 +742,14 @@ public void loadtblNhanvien(){
            
         }
 
+private void xuLyXuatExcel() {
+        XuLyFileExcel xuatExcel = new XuLyFileExcel();
+        xuatExcel.xuatExcel(tblNhanvien);
+}
+private void xulyNhapExcel(){
+        XuLyFileExcel nhapExcel = new XuLyFileExcel();
+        nhapExcel.nhapExcel(tblNhanvien);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnUpdate;
@@ -718,6 +767,8 @@ public void loadtblNhanvien(){
     public javax.swing.JButton btnAdd2;
     public javax.swing.JButton btnEdit;
     public javax.swing.JButton btnEdit2;
+    public javax.swing.JButton btnExport;
+    public javax.swing.JButton btnImport;
     public javax.swing.JButton btnRemove;
     public javax.swing.JButton btnSearch;
     public javax.swing.ButtonGroup buttonGroup1;

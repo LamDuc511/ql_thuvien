@@ -194,7 +194,7 @@ public class JPnAnalyze extends javax.swing.JPanel {
 
         jPanel1.add(intNhanvien1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, 280, 120));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 470));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 560));
     }// </editor-fold>//GEN-END:initComponents
 
 
