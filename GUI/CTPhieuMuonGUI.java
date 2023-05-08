@@ -18,6 +18,7 @@ import BUS.NoiQuyPhatBUS;
 import BUS.PhieuMuonBUS;
 import DTO.PhieuMuonDTO;
 import DTO.PhieuPhatDTO;
+import Report.XuatDanhSachExcel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -47,7 +48,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     public CTPhieuMuonGUI() throws Exception  {
         initComponents();
         txtMaSach.setEditable(false);
-        updatect();
+        update();
         updatePhieuPhat();
         changetxtPhat();
         changetxtMaSach();        
@@ -80,7 +81,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        txtPhat = new javax.swing.JComboBox<String>();
+        txtPhat = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         btnThemPhat = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -90,9 +91,10 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtMaSach = new javax.swing.JComboBox<String>();
+        txtMaSach = new javax.swing.JComboBox<>();
         txtTongTien = new javax.swing.JTextField();
         txtTongTien1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCTPhieuMuon = new javax.swing.JTable();
@@ -104,11 +106,8 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(217, 237, 202));
-
-        jPanel2.setBackground(new java.awt.Color(217, 237, 202));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Xem Chi Tiết Phiếu Mượn");
         jLabel1.setToolTipText("");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -118,10 +117,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +127,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(217, 237, 202));
-
-        txtPhat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtPhat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         txtPhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhatActionPerformed(evt);
@@ -176,7 +170,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
 
         jLabel7.setText("Số lượng:");
 
-        txtMaSach.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         txtMaSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSachActionPerformed(evt);
@@ -196,36 +190,47 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Xuất Excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPhat, 0, 159, Short.MAX_VALUE)
+                            .addComponent(txtTongTien1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPhat, 0, 159, Short.MAX_VALUE)
-                    .addComponent(txtTongTien1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(txtTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTongTien)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNopPhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThemPhat, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
@@ -258,7 +263,8 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
 
@@ -279,7 +285,9 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +311,9 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,8 +327,8 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +384,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             if (result == JOptionPane.YES_OPTION) {
                 try {
                     if(bus.xoa(sv)){
-                        updatect();
+                        update();
                         System.out.println("Xoa thanh cong");
                     }
                 } catch (Exception ex) {
@@ -484,8 +494,18 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Lỗi :Chi tiết này đã được thêm vào rồi", "Lỗi", JOptionPane.OK_OPTION);
         }
-            updatect();
+            update();
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        XuatDanhSachExcel xuat =new XuatDanhSachExcel();
+        try {
+            xuat.CTPhieuMuon();
+        } catch (Exception ex) {
+            Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,6 +552,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemPhat;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -554,7 +575,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtTongTien;
     private javax.swing.JTextField txtTongTien1;
     // End of variables declaration//GEN-END:variables
-    public void updatect(){
+    public void update(){
         try {
             // TODO add your handling code here:
 //            if(bus.getList_PM()==null){
@@ -639,7 +660,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         try {
             if(busPhieuMuon.sua(pm)){
                 System.out.println("Tra Thanh Cong");
-                updatect();
+                update();
             }
         } catch (Exception ex) {
             Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);

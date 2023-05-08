@@ -202,7 +202,7 @@ public class nxb extends javax.swing.JFrame {
         jLabel7.setText("QUẢN LÝ NHÀ XUẤT BẢN");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 3, 1240, 820));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 3, -1, 656));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

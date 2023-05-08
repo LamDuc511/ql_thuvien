@@ -24,6 +24,7 @@ public class JPnNXB extends javax.swing.JPanel {
      * Creates new form JPnNXB1
      */
     public JPnNXB() {
+        setSize(724,656);
         initComponents();
      tablemodel = (DefaultTableModel) tbnNxb.getModel();
 
@@ -200,7 +201,7 @@ public class JPnNXB extends javax.swing.JPanel {
         jLabel7.setText("QUẢN LÝ NHÀ XUẤT BẢN");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 724, 656));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 840, 656));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtdiachiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdiachiActionPerformed
@@ -344,36 +345,11 @@ public class JPnNXB extends javax.swing.JPanel {
                 tblmodel.addRow(new Object[]{nxb.getMaNhaSanXuat(), nxb.getTenNhaXuatBan(),
                     nxb.getDiaChi(), nxb.getSoDienThoai()});
         }
+                
         );
+        tbnNxb.setModel(tblmodel);
     }//GEN-LAST:event_reActionPerformed
-public void loadtblnxb(){
-    tablemodel.setRowCount(0);
-       dsnv = nhaXuatBanBUS.getdsnv();
-     Vector header = new Vector();
-        header.add("Tên nhà xuất bản");
-        header.add("Mã nhà xuất bản");
-        header.add("Địa chỉ");
-        header.add("Số điện thoại");
-        if(tablemodel.getRowCount()==0){
-            tablemodel = new DefaultTableModel(header,0);
-            
-        }
-        for (nhaXuatBanDTO nv : dsnv) {
-            Vector vec = new Vector();
-            vec.add(nv.getid());
-            vec.add(nv.getho());
-            vec.add(nv.getten());
-            vec.add(nv.getluong());
-            vec.add(nv.getDiachi());
-            vec.add(nv.getngaysinh());
-            vec.add(nv.getgioitinh());
-            vec.add(nv.getsdt());
-            
-            tablemodel.addRow(vec);
-        }
-        tblNhanvien.setModel(tablemodel);
-           
-        }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton find;

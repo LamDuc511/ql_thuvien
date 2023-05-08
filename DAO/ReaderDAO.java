@@ -7,6 +7,8 @@ package DAO;
 import GUI.*;
 import DTO.*;
 import DAO.*;
+import static DAO.tacGiaDAO.con;
+import static DAO.tacGiaDAO.ptst;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -61,12 +63,14 @@ public class ReaderDAO {
      return ds;
     }
     public void xoa(String ma){
-        try{
-            String qry = "DELETE from docgia where Ma = '" + ma + "'";
-            ptst = con.prepareStatement(qry);
+        try {
+            String qry = "update docgia set trangthai=0 where Ma='" + ma + "'";
+            ptst = con.prepareCall(qry);
             ptst.executeUpdate();
-        }catch(Exception e){JOptionPane.showMessageDialog(null,e);}
-        }
+
+        } catch (Exception e) {        }
+    
+    }
     public void sua(ReaderDTO dg){
         try{
             String qry = "UPDATE docgia set ";

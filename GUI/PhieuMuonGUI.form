@@ -38,6 +38,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ca" green="ed" red="d9" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -59,22 +64,33 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ca" green="ed" red="d9" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btncapnhat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btncapnhat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -92,9 +108,26 @@
                 <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch phi&#x1ebf;u m&#x1b0;&#x1ee3;n"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="btncapnhat">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="L&#xe0;m M&#x1edb;i"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btncapnhatMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncapnhatActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ca" green="ed" red="d9" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -250,7 +283,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="txtNgayMuon" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtNgayTra" pref="157" max="32767" attributes="0"/>
+                                                  <Component id="txtNgayTra" pref="188" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -258,13 +291,13 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="btncapnhat" max="32767" attributes="0"/>
                                           <Component id="btnXoa" max="32767" attributes="0"/>
                                           <Component id="btnThem" max="32767" attributes="0"/>
                                           <Component id="btnLuu" alignment="1" max="32767" attributes="0"/>
                                           <Component id="btnTra" max="32767" attributes="0"/>
                                           <Component id="btnXem" max="32767" attributes="0"/>
                                           <Component id="jButton1" max="32767" attributes="0"/>
+                                          <Component id="btnXuatExcel" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -298,19 +331,19 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnThem" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnXoa" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btncapnhat" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnLuu" min="-2" pref="41" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnTra" min="-2" pref="41" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnXem" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="39" max="-2" attributes="0"/>
-                              <EmptySpace pref="44" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnXuatExcel" min="-2" pref="39" max="-2" attributes="0"/>
+                              <EmptySpace pref="81" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -377,18 +410,6 @@
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnXoaMouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btncapnhat">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="cc" red="cc" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="L&#xe0;m M&#x1edb;i"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btncapnhatMouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncapnhatActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -459,6 +480,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnXuatExcel">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t excel"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXuatExcelActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

@@ -5,22 +5,23 @@
 package GUI;
 
 import BUS.NhanVienBUS;
+import BUS.PhieuMuonBUS;
 import DTO.NhanVienDTO;
+import DTO.PhieuMuonDTO;
+import Report.XuatDanhSachExcel;
 import com.toedter.calendar.JDateChooser;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import BUS.PhieuMuonBUS;
-import DTO.PhieuMuonDTO;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -54,6 +55,7 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btncapnhat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -66,7 +68,6 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<String>();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        btncapnhat = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNgayMuon = new com.toedter.calendar.JDateChooser();
@@ -75,21 +76,40 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
         btnTra = new javax.swing.JButton();
         btnXem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnXuatExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(217, 237, 202));
+
+        jPanel2.setBackground(new java.awt.Color(217, 237, 202));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Danh sách phiếu mượn");
 
+        btncapnhat.setBackground(new java.awt.Color(204, 204, 255));
+        btncapnhat.setText("Làm Mới");
+        btncapnhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncapnhatMouseClicked(evt);
+            }
+        });
+        btncapnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncapnhatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btncapnhat)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -97,7 +117,13 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btncapnhat)
+                .addContainerGap())
         );
+
+        jPanel3.setBackground(new java.awt.Color(217, 237, 202));
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -169,19 +195,6 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
             }
         });
 
-        btncapnhat.setBackground(new java.awt.Color(204, 204, 255));
-        btncapnhat.setText("Làm Mới");
-        btncapnhat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btncapnhatMouseClicked(evt);
-            }
-        });
-        btncapnhat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncapnhatActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Ngày Mượn:");
 
         jLabel7.setText("Ngày Trả:");
@@ -239,6 +252,13 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
             }
         });
 
+        btnXuatExcel.setText("Xuất excel");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -263,17 +283,17 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNgayTra, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))))
+                                    .addComponent(txtNgayTra, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btncapnhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLuu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnXem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnXuatExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -298,19 +318,19 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
                     .addComponent(txtNgayTra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btncapnhat, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnXem, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -486,6 +506,8 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
                         System.out.println("Xoa thanh cong");
                     }
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Lỗi :Còn phiếu phạt chưa xóa"
+                            + "", "Lỗi", JOptionPane.OK_OPTION);
                     Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -527,10 +549,10 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
                 long diff = d2.getTime() - d1.getTime();
                 
                 if (diff <= 0) {
-                    mochitiet(Integer.toString(sv.getMa()));
+                    mochitiet(Integer.toString(sv.getMa()),sv);
                     
                 } else {
-                    mochitiet(Integer.toString(sv.getMa()));
+                    mochitiet(Integer.toString(sv.getMa()),sv);
                 }
             }
             else
@@ -560,11 +582,6 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
     private void btnTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTraActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        mochitiet();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
         // TODO add your handling code here:
@@ -625,6 +642,21 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablePhieuMuonMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        mochitiet();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        // TODO add your handling code here:
+        XuatDanhSachExcel xuat =new XuatDanhSachExcel();
+        try {
+            xuat.PhieuMuon();
+        } catch (Exception ex) {
+            Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -670,6 +702,7 @@ public class PhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnTra;
     private javax.swing.JButton btnXem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JButton btncapnhat;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;

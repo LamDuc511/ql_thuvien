@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import BUS.tacgiaBUS;
+import DAO.tacGiaDAO;
+import DTO.tacGiaDTO;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;

@@ -27,7 +27,6 @@ public class NhanVienDAO {
             pmuon.setMa(result.getInt("Ma"));
             pmuon.setLuong(result.getInt("Luong"));
             pmuon.setSoDienThoai(result.getInt("SoDienThoai"));
-            pmuon.setMatKhau(result.getInt("MatKhau"));
             pmuon.setDiaChi(result.getString("DiaChi"));
             pmuon.setGioiTinh(result.getString("GioiTinh"));
             pmuon.setTen(result.getString("Ten"));

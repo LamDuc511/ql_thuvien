@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import library.controller.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import library.Forms.Transition;
 /**
@@ -39,6 +41,7 @@ public class Menu extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ADMIN\\Desktop\\Java\\Library\\src\\image\\icons8_library_100px.png"));
         setTitle("Quan ly thu vien");
         initComponents();
+        JPnContent.setSize(724,656);
         Controller controller = new Controller(JPnContent);
         controller.setView(JPnStorage);
         List<category> cate = new ArrayList();
@@ -248,6 +251,11 @@ public class Menu extends javax.swing.JFrame {
         Sidebar.add(JPnEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 300, -1));
 
         JPnService.setBackground(new java.awt.Color(43, 152, 64));
+        JPnService.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JPnServiceMouseClicked(evt);
+            }
+        });
         JPnService.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_books_50px.png"))); // NOI18N
@@ -276,6 +284,11 @@ public class Menu extends javax.swing.JFrame {
         Sidebar.add(JPnStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 300, -1));
 
         JPnNXB.setBackground(new java.awt.Color(43, 152, 64));
+        JPnNXB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JPnNXBMouseClicked(evt);
+            }
+        });
         JPnNXB.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_supplier_50px_1.png"))); // NOI18N
@@ -350,6 +363,25 @@ public class Menu extends javax.swing.JFrame {
     private void JPnAuthorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPnAuthorMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_JPnAuthorMouseClicked
+
+    private void JPnNXBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPnNXBMouseClicked
+           
+            
+    }//GEN-LAST:event_JPnNXBMouseClicked
+
+    private void JPnServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPnServiceMouseClicked
+        // TODO add your handling code here:
+         try {
+                // TODO add your handling code here:
+                JFrame muontra = new MuonTraGUI();
+                muontra.setTitle("Phiếu mượn");
+                muontra.setVisible(true);
+                muontra.setSize(1000,853);
+                muontra.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            } catch (Exception ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_JPnServiceMouseClicked
 
     
     

@@ -5,21 +5,29 @@
  */
 package GUI;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ADMIN
  */
 public class JPnService extends javax.swing.JPanel {
-    
-    
 
     /**
      * Creates new form JPnService
      */
     public JPnService() throws Exception {
         initComponents();
-        PhieuMuon PM = new PhieuMuon();
-        CTPhieuMuon CTPM = new CTPhieuMuon();
+        JFrame muontra = new MuonTraGUI();
+
+
+        // Lấy nội dung chính của JFrame đã có sẵn
+        JPanel service = (JPanel) muontra.getContentPane();
+
+        // Thêm nội dung chính vào JTabbedPane
+        service.setVisible(true);
+        service.setSize(1000,583);
     }
 
     /**
@@ -31,28 +39,37 @@ public class JPnService extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tab = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
 
-        tab.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 625, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 392, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTabbedPane tab;
+    public javax.swing.JPanel jPanel2;
+    public javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

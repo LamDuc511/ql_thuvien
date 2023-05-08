@@ -15,6 +15,7 @@ public class JPnDefault extends javax.swing.JPanel {
      * Creates new form JPnDefault
      */
     public JPnDefault() {
+        setSize(724,656);
         initComponents();
     }
 
@@ -36,7 +37,7 @@ public class JPnDefault extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome to the Library");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 300));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 470));
     }// </editor-fold>//GEN-END:initComponents
 
 

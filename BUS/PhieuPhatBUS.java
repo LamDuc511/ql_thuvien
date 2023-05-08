@@ -53,7 +53,52 @@ public class PhieuPhatBUS {
         this.list_PM = list_PM;
     }
 
+        public ArrayList<PhieuPhatDTO> timKiem_MaPN(String strMaPN) {
+        ArrayList<PhieuPhatDTO> arr = new ArrayList<>();
+        for (PhieuPhatDTO hoadon : list_PM) {
+            if ( hoadon.getSoTienPhat().indexOf(strMaPN) != -1 ) {
+                System.out.println("Tim thay " + hoadon.getMa() );
+                arr.add(hoadon);
+            }
+        }
+        return arr;
+    }
     
+//    public ArrayList<PhieuPhatDTO> timKiem_MaNV(String strMaNV) {
+//        ArrayList<PhieuPhatDTO> arr = new ArrayList<>();
+//        for (PhieuPhatDTO hoadon : list_PM) {
+//            if ( hoadon.getMaNV().indexOf(strMaNV) != -1 ) {
+//                System.out.println("Tim thay " + hoadon.getStrMaPN() );
+//                arr.add(hoadon);
+//            }
+//        }
+//        
+//        return arr;
+//    }
+    
+//    public ArrayList<PhieuPhatDTO> timKiem_MaNCC(String strMaNCC) {
+//        ArrayList<PhieuPhatDTO> arr = new ArrayList<>();
+//        for (PhieuPhatDTO hoadon : list_PM) {
+//            if ( hoadon.getStrMaNCC().indexOf(strMaNCC) != -1 ) {
+//                System.out.println("Tim thay " + hoadon.getStrMaPN() );
+//                arr.add(hoadon);
+//            }
+//        }
+//        
+//        return arr;
+//    }
+    
+    public ArrayList<PhieuPhatDTO> timKiem_TongTien(String strTT) {
+        ArrayList<PhieuPhatDTO> arr = new ArrayList<>();
+        for (PhieuPhatDTO hoadon : list_PM) {
+            if ( String.valueOf(hoadon.getSoTienPhat()).indexOf(strTT) != -1 ) {
+                System.out.println("Tim thay " + hoadon.getMa() );
+                arr.add(hoadon);
+            }
+        }
+        
+        return arr;
+    }
     public int getNumb() {
         return list_PM.size();
     }
