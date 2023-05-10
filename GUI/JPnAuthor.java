@@ -86,14 +86,14 @@ public class JPnAuthor extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cboxFilter1 = new javax.swing.JComboBox();
-        btnRemove = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
-        btnImport = new javax.swing.JButton();
         BtnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
 
         JFRsearch.setTitle("Tìm kiếm");
         JFRsearch.setBackground(new java.awt.Color(217, 237, 202));
@@ -104,13 +104,13 @@ public class JPnAuthor extends javax.swing.JPanel {
 
         tblRsearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã", "Họ", "Tên", "Ngày sinh", "Giới tính", "Số điện thoại"
+                "Mã", "Họ", "Tên", "Giới tính", "Số điện thoại"
             }
         ));
         jScrollPane2.setViewportView(tblRsearch);
@@ -134,7 +134,7 @@ public class JPnAuthor extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -317,6 +317,8 @@ public class JPnAuthor extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        setMinimumSize(new java.awt.Dimension(1000, 649));
+
         jPanel3.setBackground(new java.awt.Color(217, 237, 202));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -357,7 +359,7 @@ public class JPnAuthor extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbltacgia);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 760, 420));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 1000, 480));
 
         jPanel4.setBackground(new java.awt.Color(217, 237, 202));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -367,14 +369,14 @@ public class JPnAuthor extends javax.swing.JPanel {
                 txtsearch1ActionPerformed(evt);
             }
         });
-        jPanel4.add(txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 200, -1));
+        jPanel4.add(txtsearch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 340, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Tim:");
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 30));
 
         jLabel7.setText("Lọc");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 40, 30));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 40, 30));
 
         cboxFilter1.setBackground(new java.awt.Color(217, 237, 202));
         cboxFilter1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mã", "Họ", "Tên" }));
@@ -384,17 +386,7 @@ public class JPnAuthor extends javax.swing.JPanel {
                 cboxFilter1ActionPerformed(evt);
             }
         });
-        jPanel4.add(cboxFilter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 100, -1));
-
-        btnRemove.setBackground(new java.awt.Color(217, 237, 202));
-        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_remove_25px.png"))); // NOI18N
-        btnRemove.setText("Xóa");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 80, 30));
+        jPanel4.add(cboxFilter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 100, -1));
 
         btnSearch.setBackground(new java.awt.Color(217, 237, 202));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_search_25px.png"))); // NOI18N
@@ -404,47 +396,7 @@ public class JPnAuthor extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel4.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 80, 30));
-
-        btnEdit.setBackground(new java.awt.Color(217, 237, 202));
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_edit_25px.png"))); // NOI18N
-        btnEdit.setText("Sửa");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 80, 30));
-
-        btnAdd.setBackground(new java.awt.Color(217, 237, 202));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_add_25px_1.png"))); // NOI18N
-        btnAdd.setText("Thêm");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 90, 30));
-
-        btnExport.setBackground(new java.awt.Color(217, 237, 202));
-        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
-        btnExport.setText("Xuất");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 100, 30));
-
-        btnImport.setBackground(new java.awt.Color(217, 237, 202));
-        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
-        btnImport.setText("Nhập");
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 100, 30));
+        jPanel4.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 80, 30));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 730, 70));
 
@@ -463,21 +415,71 @@ public class JPnAuthor extends javax.swing.JPanel {
         jLabel3.setText("Quản lý tác giả");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
 
+        btnAdd.setBackground(new java.awt.Color(217, 237, 202));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_add_25px_1.png"))); // NOI18N
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, 90, 30));
+
+        btnEdit.setBackground(new java.awt.Color(217, 237, 202));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_edit_25px.png"))); // NOI18N
+        btnEdit.setText("Sửa");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 100, -1, 30));
+
+        btnRemove.setBackground(new java.awt.Color(217, 237, 202));
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_remove_25px.png"))); // NOI18N
+        btnRemove.setText("Xóa");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 100, 80, 30));
+
+        btnImport.setBackground(new java.awt.Color(217, 237, 202));
+        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnImport.setText("Nhập");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, 100, 30));
+
+        btnExport.setBackground(new java.awt.Color(217, 237, 202));
+        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnExport.setText("Xuất");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 100, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 538, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE)))
+                    .addGap(0, 117, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -530,6 +532,7 @@ public class JPnAuthor extends javax.swing.JPanel {
         tacgiaBUS bus = new tacgiaBUS();
         JFRsearch.setVisible(true);
         JFRsearch.setSize(630,300);
+        bus.Search(txtsearch1.getText(), cboxFilter1, jLabel8, tblRsearch);
        // bus.Search(txtsearch1.getText(), cboxFilter1, jLabel8, tblRsearch);
 
     }//GEN-LAST:event_btnSearchActionPerformed

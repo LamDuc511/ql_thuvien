@@ -4,6 +4,17 @@
  * and open the template in the editor.
  */
 package GUI;
+import DTO.sachDTO;
+import DAO.sachDAO;
+import BUS.sachBUS;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  *
@@ -27,31 +38,271 @@ public class JPnBooks extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblSach = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtma = new javax.swing.JTextField();
+        txtten = new javax.swing.JTextField();
+        txttg = new javax.swing.JTextField();
+        txtnxb = new javax.swing.JTextField();
+        txtnam = new javax.swing.JTextField();
+        txtgia = new javax.swing.JTextField();
+        lbanh = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
+        btnChoose = new java.awt.Button();
+        jLabel9 = new javax.swing.JLabel();
+        txtsl = new javax.swing.JTextField();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_books_50px.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        setMinimumSize(new java.awt.Dimension(1000, 649));
+        setPreferredSize(new java.awt.Dimension(1000, 649));
+
+        jPanel1.setBackground(new java.awt.Color(217, 237, 202));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 649));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblSach.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã", "Tên", "Mã tác giả", "Mã thể loại", "Mã nhà xuất bản", "Năm sản xuấtl", "Số lượng", "Ảnh", "Giá"
+            }
+        ));
+        tblSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSachMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblSach);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 286, 1000, 363));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Quản lý sách");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+
+        jLabel2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel2.setText("Mã sách");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel3.setText("Tên sách");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel4.setText("Tác giả");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel5.setText("Tên NXB");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel6.setText("Năm sản xuất");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel7.setText("Giá");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
+
+        txtma.setEditable(false);
+        txtma.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.add(txtma, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 200, -1));
+        jPanel1.add(txtten, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, -1));
+        jPanel1.add(txttg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
+        jPanel1.add(txtnxb, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, -1));
+        jPanel1.add(txtnam, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 230, -1));
+        jPanel1.add(txtgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 230, -1));
+
+        lbanh.setToolTipText("");
+        lbanh.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbanh.setMinimumSize(new java.awt.Dimension(200, 200));
+        lbanh.setPreferredSize(new java.awt.Dimension(200, 200));
+        jPanel1.add(lbanh, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 70, 150, 140));
+
+        jLabel8.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Ảnh");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 180, -1));
+
+        btnAdd.setBackground(new java.awt.Color(217, 237, 202));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_add_25px_1.png"))); // NOI18N
+        btnAdd.setText("Thêm");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 110, 30));
+
+        btnEdit.setBackground(new java.awt.Color(217, 237, 202));
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_edit_25px.png"))); // NOI18N
+        btnEdit.setText("Sửa");
+        btnEdit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 100, 30));
+
+        btnRemove.setBackground(new java.awt.Color(217, 237, 202));
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_remove_25px.png"))); // NOI18N
+        btnRemove.setText("Xóa");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
+
+        btnExport.setBackground(new java.awt.Color(217, 237, 202));
+        btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnExport.setText("Xuất");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 120, 30));
+
+        btnImport.setBackground(new java.awt.Color(217, 237, 202));
+        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_xls_25px.png"))); // NOI18N
+        btnImport.setText("Nhập");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnImport, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 120, 30));
+
+        btnChoose.setLabel("Chọn ảnh");
+        jPanel1.add(btnChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel9.setText("Số lượng");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        jPanel1.add(txtsl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        JFAdd.setVisible(true);
+        JFAdd.setSize(700,380);
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        JFEdit.setVisible(true);
+        JFEdit.setSize(700,380);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+        EmployeeBUS bus = new EmployeeBUS();
+
+        int i = tblNhanvien.getSelectedRow();
+        if(i>=0){
+            String ma = tblNhanvien.getModel().getValueAt(i,0).toString();
+            dsnv.remove(bus.timkiemtheoMa(ma));
+            bus.xoa(ma);
+            dtmNhanvien.removeRow(i);
+            tblNhanvien.setModel(dtmNhanvien);
+            JOptionPane.showMessageDialog(null,"Delete Successfully.");
+        }
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        // TODO add your handling code here:
+        xuLyXuatExcel();
+    }//GEN-LAST:event_btnExportActionPerformed
+
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn nhập?");
+        switch(result){
+            case JOptionPane.YES_OPTION:
+            xulyNhapExcel();
+            break;
+            case JOptionPane.NO_OPTION:
+            break;
+            case JOptionPane.CANCEL_OPTION:
+            break;
+        }
+    }//GEN-LAST:event_btnImportActionPerformed
+
+    private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
+        // TODO add your handling code here:
+        sachBUS bus = new sachBUS();
+        int i = tblSach.getSelectedRow();
+        DefaultTableModel dtmSach =(DefaultTableModel) tblSach.getModel();
+     txtma.setText(dtmSach.getValueAt(i,0).toString());
+     txtten.setText(dtmSach.getValueAt(i,1).toString());
+     txttg.setText(bus.getTenTG(Integer.parseInt(dtmSach.getValueAt(i,2).toString())));
+     txtnxb.setText(bus.getTenNXB(Integer.parseInt(dtmSach.getValueAt(i,3).toString())));
+     txtnam.setText(dtmSach.getValueAt(i, 4).toString());
+     txtsl.setText(dtmSach.getValueAt(i, 4).toString());
+     txtgia.setText(dtmSach.getValueAt(i, 4).toString());
+     
+        
+    }//GEN-LAST:event_tblSachMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAdd;
+    public java.awt.Button btnChoose;
+    public javax.swing.JButton btnEdit;
+    public javax.swing.JButton btnExport;
+    public javax.swing.JButton btnImport;
+    public javax.swing.JButton btnRemove;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel lbanh;
+    public javax.swing.JTable tblSach;
+    public javax.swing.JTextField txtgia;
+    public javax.swing.JTextField txtma;
+    public javax.swing.JTextField txtnam;
+    public javax.swing.JTextField txtnxb;
+    public javax.swing.JTextField txtsl;
+    public javax.swing.JTextField txtten;
+    public javax.swing.JTextField txttg;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,11 +37,10 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
-        ArrayList<Image> icons = new ArrayList();
         setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ADMIN\\Desktop\\Java\\Library\\src\\image\\icons8_library_100px.png"));
         setTitle("Quan ly thu vien");
         initComponents();
-        JPnContent.setSize(724,656);
+        JPnContent.setSize(1000,649);
         Controller controller = new Controller(JPnContent);
         controller.setView(JPnStorage);
         List<category> cate = new ArrayList();
@@ -316,15 +315,17 @@ public class Menu extends javax.swing.JFrame {
 
         Sidebar.add(JPnAnalyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 300, -1));
 
+        JPnContent.setPreferredSize(new java.awt.Dimension(1000, 649));
+
         javax.swing.GroupLayout JPnContentLayout = new javax.swing.GroupLayout(JPnContent);
         JPnContent.setLayout(JPnContentLayout);
         JPnContentLayout.setHorizontalGroup(
             JPnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         JPnContentLayout.setVerticalGroup(
             JPnContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -377,7 +378,7 @@ public class Menu extends javax.swing.JFrame {
                 muontra.setTitle("Phiếu mượn");
                 muontra.setVisible(true);
                 muontra.setSize(1000,853);
-                muontra.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                muontra.setDefaultCloseOperation(HIDE_ON_CLOSE);
             } catch (Exception ex) {
                 Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -429,9 +430,16 @@ public class Menu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                TaiKhoanGUI login = new TaiKhoanGUI();
+                login.showWindow();
+ //               new Menu().setVisible(true);
             }
         });
+    }
+        public void showWindow() {
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
