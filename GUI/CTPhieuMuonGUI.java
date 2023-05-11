@@ -16,8 +16,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import BUS.NoiQuyPhatBUS;
 import BUS.PhieuMuonBUS;
+import BUS.sachBUS;
 import DTO.PhieuMuonDTO;
 import DTO.PhieuPhatDTO;
+import DTO.sachDTO;
 import Report.XuatDanhSachExcel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,7 +35,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     /**
      * Creates new form CTPhieuMuonGUI
      */
-    private PhieuMuonDTO pm;
+    PhieuMuonDTO pm;
 
     public PhieuMuonDTO getPm() {
         return pm;
@@ -45,19 +47,31 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
 
     private DefaultTableModel model;
     private DefaultTableModel modelPhat;
-    public CTPhieuMuonGUI() throws Exception  {
+
+    public CTPhieuMuonGUI() throws Exception {
         initComponents();
-        txtMaSach.setEditable(false);
         update();
         updatePhieuPhat();
         changetxtPhat();
-        changetxtMaSach();        
+        changetxtMaSach();
     }
-    private CTPhieuMuonBUS bus =new CTPhieuMuonBUS();
-    private NoiQuyPhatBUS busNoiQuy=new NoiQuyPhatBUS();
-    private PhieuPhatBUS busPhieuPhat =new PhieuPhatBUS();
-    private PhieuMuonBUS busPhieuMuon=new PhieuMuonBUS();
+
+    public CTPhieuMuonGUI(boolean xem) throws Exception {
+        initComponents();
+        update();
+        updatePhieuPhat();
+        changetxtPhat();
+        changetxtMaSach();
+        btnNopPhat.setVisible(xem);
+    }
+    private CTPhieuMuonBUS bus = new CTPhieuMuonBUS();
+    private NoiQuyPhatBUS busNoiQuy = new NoiQuyPhatBUS();
+    private PhieuPhatBUS busPhieuPhat = new PhieuPhatBUS();
+    private PhieuMuonBUS busPhieuMuon = new PhieuMuonBUS();
+    private sachBUS busSach = new sachBUS();
+
     private String MaPhieuMuon;
+
     public String getMaPhieuMuon() {
         return MaPhieuMuon;
     }
@@ -65,7 +79,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     public void setMaPhieuMuon(String MaPhieuMuon) {
         this.MaPhieuMuon = MaPhieuMuon;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,27 +94,30 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableCTPhieuMuon = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableCTPhieuPhat = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        txtMaSach = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtSoLuong = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
         txtPhat = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        btnThemPhat = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        txtTongTien = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        btnThemPhat = new javax.swing.JButton();
         btnNopPhat = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtSoLuong = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtMaSach = new javax.swing.JComboBox<>();
-        txtTongTien = new javax.swing.JTextField();
-        txtTongTien1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableCTPhieuMuon = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableCTPhieuPhat = new javax.swing.JTable();
+        btnXuatExcel = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -117,14 +134,116 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        tableCTPhieuMuon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Mã Phiếu Mượn", "Mã Sách", "Số lượng"
+            }
+        ));
+        jScrollPane1.setViewportView(tableCTPhieuMuon);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+        );
+
+        tableCTPhieuPhat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã Phiếu mượn", "Mã sách", "Lỗi", "Giá Sách", "Tiền Nộp"
+            }
+        ));
+        jScrollPane3.setViewportView(tableCTPhieuPhat);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        txtMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtMaSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSachActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Mã sách:");
+
+        jLabel7.setText("Số lượng:");
+
+        txtSoLuong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoLuongActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMaSach, 0, 369, Short.MAX_VALUE)
+                    .addComponent(txtSoLuong))
+                .addGap(42, 42, 42))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSoLuong)
+                    .addComponent(jLabel7)))
         );
 
         txtPhat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -136,6 +255,79 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Nội dung phạt:");
 
+        jLabel4.setText("Tổng tiền phạt:");
+
+        txtTongTien.setEditable(false);
+        txtTongTien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTongTienActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPhat, 0, 320, Short.MAX_VALUE)
+                    .addComponent(txtTongTien))
+                .addGap(30, 30, 30))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         btnThemPhat.setText("Phạt");
         btnThemPhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,9 +335,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Tổng tiền phạt:");
-
-        btnNopPhat.setText("Nộp Phạt");
+        btnNopPhat.setText("Trả & Nộp Phạt");
         btnNopPhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNopPhatActionPerformed(evt);
@@ -166,34 +356,10 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Mã sách:");
-
-        jLabel7.setText("Số lượng:");
-
-        txtMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        txtMaSach.addActionListener(new java.awt.event.ActionListener() {
+        btnXuatExcel.setText("Xuất Excel");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaSachActionPerformed(evt);
-            }
-        });
-
-        txtTongTien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtTongTien.setForeground(new java.awt.Color(255, 102, 102));
-        txtTongTien.setToolTipText("");
-        txtTongTien.setUI(null);
-        txtTongTien.setAutoscrolls(false);
-
-        txtTongTien1.setEditable(false);
-        txtTongTien1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTongTien1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Xuất Excel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnXuatExcelActionPerformed(evt);
             }
         });
 
@@ -201,143 +367,30 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPhat, 0, 159, Short.MAX_VALUE)
-                            .addComponent(txtTongTien1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTongTien)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNopPhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThemPhat, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnThemPhat, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnNopPhat)
+                .addGap(32, 32, 32))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnThemPhat)
-                    .addComponent(txtPhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNopPhat)
-                    .addComponent(jLabel4)
-                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTongTien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXuatExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
-        );
-
-        tableCTPhieuMuon.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Mã Phiếu Mượn", "Mã Sách", "Số lượng"
-            }
-        ));
-        jScrollPane1.setViewportView(tableCTPhieuMuon);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-
-        tableCTPhieuPhat.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tableCTPhieuPhat);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnThemPhat, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNopPhat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -346,13 +399,17 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -375,137 +432,167 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        int i = tableCTPhieuMuon.getSelectedRow();
-        CTPhieuMuonDTO sv =new CTPhieuMuonDTO();
-        if (i>=0)
-        {
-            sv=bus.getInfor(i);
-            int result = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-                try {
-                    if(bus.xoa(sv)){
-                        update();
-                        System.out.println("Xoa thanh cong");
+        if (MaPhieuMuon != null) {
+            int i = tableCTPhieuMuon.getSelectedRow();
+            CTPhieuMuonDTO sv = new CTPhieuMuonDTO();
+            if (i >= 0) {
+                sv = bus.getInfor(i);
+                int result = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    try {
+                        if (bus.xoa(sv)) {
+                            update();
+                            System.out.println("Xoa thanh cong");
+                        }
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Lỗi: Còn Phiếu Phạt chưa xử lý", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                        Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Lỗi: Còn Phiếu Phạt chưa xử lý", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                    Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Lỗi: Bạn Chưa chọn phiểu xóa", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "Lỗi :bạn đang xem chi tiết tất cả các phiếu", "Lỗi", JOptionPane.OK_OPTION);
         }
-        else JOptionPane.showMessageDialog(null, "Lỗi: Bạn Chưa chọn phiểu xóa", "Lỗi", JOptionPane.ERROR_MESSAGE);
+
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void txtMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSachActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaSachActionPerformed
 
-    private void btnThemPhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPhatActionPerformed
-        // TODO add your handling code here:
-        int rowIndex=tableCTPhieuMuon.getSelectedRow();
-        if(rowIndex >=0){
-            CTPhieuMuonDTO ctpm =new CTPhieuMuonDTO();
-            ctpm=bus.getInfor(rowIndex);
-            Vector row =new Vector();
-            row.add(ctpm.getMaPM());
-            row.add(ctpm.getMaSach());
-            //lấy ma vi pham
-            String[] parts;String part1;
-            parts = txtPhat.getSelectedItem().toString().trim().split(" ");
-            part1 = parts[0];
-            row.add(part1);
+    private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
+    }//GEN-LAST:event_txtTongTienActionPerformed
 
-            if(busNoiQuy.getList_PM()==null){
+    private void btnNopPhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNopPhatActionPerformed
+        // TODO add your handling code here:
+        if(MaPhieuMuon!=null){
+        PhieuPhatDTO sv = new PhieuPhatDTO();
+        Date date = Calendar.getInstance().getTime();
+        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String outputString = outputFormat.format(date);
+        System.out.println(tableCTPhieuPhat.getRowCount());
+        if (tableCTPhieuPhat.getRowCount() != 0) {
+            for (int i = 0; i < tableCTPhieuPhat.getRowCount(); i++) {
+                sv.setMa(busPhieuPhat.getDefaultMaPN());
+                sv.setMaPhieuMuon(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 0).toString()));
+                sv.setMaSach(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 1).toString()));
+                sv.setMaViPham(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 2).toString()));
+                sv.setSoTienPhat(tableCTPhieuPhat.getValueAt(i, 3).toString());
+                sv.setNgayViPham(outputString);
                 try {
-                    busNoiQuy.docDB(part1);
+                    if (busPhieuPhat.them(sv)) {
+                    }
+
                 } catch (Exception ex) {
                     Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
-            Double tien = 0.0;
-            for (NoiQuyPhatDTO sv : busNoiQuy.getList_PM()){
-                if(part1.equals(Integer.toString(sv.getMa()))){
-                    tien=(double) (ctpm.getMaSach()*Double.parseDouble(sv.getCongThuc())*3000);
-                }
-            }
-
-            row.add(tien);
-            modelPhat.addRow(row);
-
-            tableCTPhieuPhat.setModel(modelPhat);
-            Double sum=0.0;
-            for(int i=0;i < tableCTPhieuPhat.getRowCount();i++){
-                sum+=Double.parseDouble(tableCTPhieuPhat.getValueAt(i, 3).toString());
-            }
-
-
-            String TongString=Double.toString(sum)+" VND";
-            txtTongTien1.setText(TongString);
         }
-        else JOptionPane.showMessageDialog(null, "Lỗi: Bạn Chưa chọn phiểu để phạt", "Lỗi", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_btnThemPhatActionPerformed
-    private void txtTongTien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTien1ActionPerformed
-    }//GEN-LAST:event_txtTongTien1ActionPerformed
-
-    private void btnNopPhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNopPhatActionPerformed
-        // TODO add your handling code here:
-        PhieuPhatDTO sv =new PhieuPhatDTO();
-        Date date = Calendar.getInstance().getTime();
-        DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String outputString = outputFormat.format(date);
-        for (int i=0;i<tableCTPhieuPhat.getRowCount();i++){
-            System.out.println(busPhieuPhat.getDefaultMaPN());
-            sv.setMa(busPhieuPhat.getDefaultMaPN());
-            sv.setMaPhieuMuon(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 0).toString()));
-            sv.setMaSach(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 1).toString()));
-            sv.setMaViPham(Integer.parseInt(tableCTPhieuPhat.getValueAt(i, 2).toString()));
-            sv.setSoTienPhat(tableCTPhieuPhat.getValueAt(i, 3).toString());
-            sv.setNgayViPham(outputString);
-            try {
-                if(busPhieuPhat.them(sv))
-                   JOptionPane.showMessageDialog(null, "Nộp phạt hoàn tất", "OKE", JOptionPane.OK_OPTION);
-                else JOptionPane.showMessageDialog(null, "Lỗi :Vi Phạm này đã phạt rồi", "Lỗi", JOptionPane.OK_OPTION);
-
-            } catch (Exception ex) {
-                Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (nopPhatThanhCong())
+            JOptionPane.showMessageDialog(null, "Tra va Nộp phạt hoàn tất", "OKE", JOptionPane.OK_OPTION);
+        else
+            JOptionPane.showMessageDialog(null, "Lỗi :Vi Phạm này đã phạt rồi", "Lỗi", JOptionPane.OK_OPTION);
         }
+        else  JOptionPane.showMessageDialog(null, "Lỗi :Đang Xem tất Cả", "Lỗi", JOptionPane.OK_OPTION);
+
     }//GEN-LAST:event_btnNopPhatActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        CTPhieuMuonDTO sv=new CTPhieuMuonDTO();
-        
-        String[] parts;String part1;
-        parts = txtMaSach.getSelectedItem().toString().trim().split(" ");
-        part1 = parts[0];
-        
-        sv.setMaPM(Integer.parseInt(MaPhieuMuon));
-        sv.setMaSach(Integer.parseInt(part1));
-        sv.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-        
-        try {
-            if(bus.them(sv))
-                System.out.println("Them CT thanh cong");
+        if (MaPhieuMuon != null) {
+            CTPhieuMuonDTO sv = new CTPhieuMuonDTO();
 
-        } catch (Exception ex) {
-            Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Lỗi :Chi tiết này đã được thêm vào rồi", "Lỗi", JOptionPane.OK_OPTION);
-        }
-            update();
+            String[] parts;
+            String part1;
+            parts = txtMaSach.getSelectedItem().toString().trim().split(" ");
+            part1 = parts[0];
+            System.out.println(part1);
+
+            sv.setMaPM(Integer.parseInt(MaPhieuMuon));
+            sv.setMaSach(Integer.parseInt(part1));
+            sv.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+
+            try {
+                if (bus.them(sv)) {
+                    System.out.println("Them CT thanh cong");
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Lỗi :Chi tiết này đã được thêm vào rồi", "Lỗi", JOptionPane.OK_OPTION);
+            }
+        }else
+        JOptionPane.showMessageDialog(null, "Lỗi :bạn đang xem chi tiết tất cả các phiếu", "Lỗi", JOptionPane.OK_OPTION);
+
+        update();
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         // TODO add your handling code here:
-        XuatDanhSachExcel xuat =new XuatDanhSachExcel();
+        XuatDanhSachExcel xuat = new XuatDanhSachExcel();
         try {
             xuat.CTPhieuMuon();
         } catch (Exception ex) {
             Logger.getLogger(CTPhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
+
+    private void btnThemPhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPhatActionPerformed
+        // TODO add your handling code here:
+        int rowIndex = tableCTPhieuMuon.getSelectedRow();
+        if (rowIndex >= 0) {
+            CTPhieuMuonDTO ctpm = new CTPhieuMuonDTO();
+            ctpm = bus.getInfor(rowIndex);
+            Vector row = new Vector();
+            row.add(ctpm.getMaPM());
+            row.add(ctpm.getMaSach());
+            //lấy ma vi pham
+            String[] parts;
+            String part1;
+            parts = txtPhat.getSelectedItem().toString().trim().split(" ");
+            part1 = parts[0];
+            row.add(part1);
+            
+            //tinh tien tung phieuphat
+            int giaSach=0;
+            for(sachDTO s : busSach.getListSach()){
+                if(s.getMa()==ctpm.getMaSach())
+                    giaSach=s.getGia();
+            }
+            row.add(giaSach);
+            
+            Double congThuc=0.0;
+            for (NoiQuyPhatDTO sv : busNoiQuy.getList_PM()) {
+                if (part1.equals(Integer.toString(sv.getMa()))) {
+                    congThuc = Double.valueOf(sv.getCongThuc());
+                }
+            }
+            
+            
+            Double tien = 0.0;
+            tien = (double) giaSach * congThuc;
+            row.add(tien);
+            modelPhat.addRow(row);
+
+            tableCTPhieuPhat.setModel(modelPhat);
+            Double sum = 0.0;
+            for (int i = 0; i < tableCTPhieuPhat.getRowCount(); i++) {
+                sum += Double.parseDouble(tableCTPhieuPhat.getValueAt(i, 3).toString());
+            }
+
+            String TongString = Double.toString(sum) + " VND";
+            txtTongTien.setText(TongString);
+        } else
+            JOptionPane.showMessageDialog(null, "Lỗi: Bạn Chưa chọn phiểu để phạt", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnThemPhatActionPerformed
+
+    private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoLuongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,7 +639,7 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThemPhat;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -560,11 +647,15 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tableCTPhieuMuon;
@@ -573,54 +664,55 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtPhat;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTongTien;
-    private javax.swing.JTextField txtTongTien1;
     // End of variables declaration//GEN-END:variables
-    public void update(){
+    public void update() {
         try {
             // TODO add your handling code here:
 //            if(bus.getList_PM()==null){
-                if(MaPhieuMuon==null)
-                    bus.docDB();
-                else
-                    bus.docDB(MaPhieuMuon);
-            
-            Vector header =new Vector();
+            if (MaPhieuMuon == null) {
+                bus.docDB();
+            } else {
+                bus.docDB(MaPhieuMuon);
+            }
+
+            Vector header = new Vector();
             header.add("Mã Phiếu Mượn");
             header.add("Mã Sách");
             header.add("Số lượng");
-            model = new DefaultTableModel(header,0);
-            
-            
-            
-            for (CTPhieuMuonDTO sv : bus.getList_PM()){
-                Vector row =new Vector();
+            model = new DefaultTableModel(header, 0);
+
+            for (CTPhieuMuonDTO sv : bus.getList_PM()) {
+                Vector row = new Vector();
                 row.add(sv.getMaPM());
                 row.add(sv.getMaSach());
                 row.add(sv.getSoLuong());
                 model.addRow(row);
-                
+
             }
             tableCTPhieuMuon.setModel(model);
         } catch (Exception ex) {
             Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void updatePhieuPhat(){
+
+    private void updatePhieuPhat() {
         try {
             // TODO add your handling code here:
-            modelPhat =new DefaultTableModel();
-            Vector header =new Vector();
+            modelPhat = new DefaultTableModel();
+            Vector header = new Vector();
             header.add("Mã Phiếu Mượn");
             header.add("Mã Sách");
             header.add("Lỗi");
+            header.add("Giá Sách");
             header.add("Tiền Nộp");
-            
-            modelPhat = new DefaultTableModel(header,0);
+
+            modelPhat = new DefaultTableModel(header, 0);
         } catch (Exception ex) {
             Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void changetxtPhat() throws Exception{
+
+    private void changetxtPhat() throws Exception {
         // Lấy model của combobox
         DefaultComboBoxModel model = (DefaultComboBoxModel) txtPhat.getModel();
 
@@ -628,19 +720,19 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         model.removeAllElements();
 
         // Thêm các phần tử mới vào combobox
-        if(busNoiQuy.getList_PM()==null){
+        if (busNoiQuy.getList_PM() == null) {
             busNoiQuy.docDB();
         }
-        for (NoiQuyPhatDTO sv : busNoiQuy.getList_PM()){
-        model.addElement(sv.getMa()+" "+sv.getNoiDung());
+        for (NoiQuyPhatDTO sv : busNoiQuy.getList_PM()) {
+            model.addElement(sv.getMa() + " " + sv.getNoiDung());
         }
 
         // Cập nhật combobox với model mới
         txtPhat.setModel(model);
-            
+
     }
 
-    private void changetxtMaSach(){
+    private void changetxtMaSach() {
         // Lấy model của combobox
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) txtMaSach.getModel();
 
@@ -648,22 +740,33 @@ public class CTPhieuMuonGUI extends javax.swing.JFrame {
         model1.removeAllElements();
 
         // Thêm các phần tử mới vào combobox
-        
-        for (int i=0;i<10;i++){
-        model1.addElement(i);
+        for (sachDTO sv : busSach.getListSach()) {
+            model1.addElement(sv.getMa() + " " + sv.getTen());
         }
 
         // Cập nhật combobox với model mới
         txtMaSach.setModel(model1);
     }
-    private void nopPhatThanhCong(){
+
+    private boolean nopPhatThanhCong() {
+//        pm.setTrangThai(1);
+        System.out.println(pm.getMa());
+        System.out.println(pm.getMaDG());
+        System.out.println(pm.getMaNV());
+        System.out.println(pm.getNgayMuon());
+        System.out.println(pm.getNgayTraThuc());
+        System.out.println(pm.getTrangThai());
+
         try {
-            if(busPhieuMuon.sua(pm)){
+            if (busPhieuMuon.sua(pm)) {
                 System.out.println("Tra Thanh Cong");
                 update();
+                return true;
             }
         } catch (Exception ex) {
             Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+        return false;
     }
 }
