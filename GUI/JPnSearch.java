@@ -7,6 +7,8 @@ package GUI;
 
 import java.awt.Font;
 
+import BUS.ReaderBUS;
+
 /**
  *
  * @author ADMIN

@@ -1,4 +1,4 @@
-/*package Others;
+package Others;
 
 import GUI.Menu;
 import javax.swing.*;
