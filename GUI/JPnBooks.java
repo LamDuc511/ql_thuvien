@@ -7,6 +7,8 @@ package GUI;
 import DTO.sachDTO;
 import DAO.sachDAO;
 import BUS.sachBUS;
+import BUS.tacgiaBUS;
+import DTO.tacGiaDTO;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -14,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 
 
 /**
@@ -21,6 +24,8 @@ import java.util.Date;
  * @author ADMIN
  */
 public class JPnBooks extends javax.swing.JPanel {
+DefaultTableModel dtmsach = new DefaultTableModel();
+ArrayList<sachDTO> listSach = new ArrayList<>();
 
     /**
      * Creates new form JPnBooks
@@ -50,8 +55,6 @@ public class JPnBooks extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         txtma = new javax.swing.JTextField();
         txtten = new javax.swing.JTextField();
-        txttg = new javax.swing.JTextField();
-        txtnxb = new javax.swing.JTextField();
         txtnam = new javax.swing.JTextField();
         txtgia = new javax.swing.JTextField();
         lbanh = new javax.swing.JLabel();
@@ -64,6 +67,10 @@ public class JPnBooks extends javax.swing.JPanel {
         btnChoose = new java.awt.Button();
         jLabel9 = new javax.swing.JLabel();
         txtsl = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
 
         setMinimumSize(new java.awt.Dimension(1000, 649));
         setPreferredSize(new java.awt.Dimension(1000, 649));
@@ -103,7 +110,7 @@ public class JPnBooks extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel3.setText("Tên sách");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel4.setText("Tác giả");
@@ -115,20 +122,18 @@ public class JPnBooks extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel6.setText("Năm sản xuất");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel7.setText("Giá");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         txtma.setEditable(false);
         txtma.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtma, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 200, -1));
-        jPanel1.add(txtten, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, -1));
-        jPanel1.add(txttg, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
-        jPanel1.add(txtnxb, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, -1));
-        jPanel1.add(txtnam, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 230, -1));
-        jPanel1.add(txtgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 230, -1));
+        jPanel1.add(txtten, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 230, -1));
+        jPanel1.add(txtnam, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 230, -1));
+        jPanel1.add(txtgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 230, -1));
 
         lbanh.setToolTipText("");
         lbanh.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -197,8 +202,21 @@ public class JPnBooks extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel9.setText("Số lượng");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
-        jPanel1.add(txtsl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 230, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+        jPanel1.add(txtsl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 230, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, -1));
+
+        jLabel10.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel10.setText("Thể loại");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -228,22 +246,22 @@ public class JPnBooks extends javax.swing.JPanel {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-        EmployeeBUS bus = new EmployeeBUS();
+        sachBUS bus = new sachBUS();
 
-        int i = tblNhanvien.getSelectedRow();
+        int i = tblSach.getSelectedRow();
         if(i>=0){
-            String ma = tblNhanvien.getModel().getValueAt(i,0).toString();
-            dsnv.remove(bus.timkiemtheoMa(ma));
+            String ma = tblSach.getModel().getValueAt(i,0).toString();
+            listSach.remove(bus.timkiemtheoMa(ma));
             bus.xoa(ma);
-            dtmNhanvien.removeRow(i);
-            tblNhanvien.setModel(dtmNhanvien);
+            dtmsach.removeRow(i);
+            tblSach.setModel(dtmsach);
             JOptionPane.showMessageDialog(null,"Delete Successfully.");
         }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         // TODO add your handling code here:
-        xuLyXuatExcel();
+     /*   xuLyXuatExcel();
     }//GEN-LAST:event_btnExportActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -257,7 +275,7 @@ public class JPnBooks extends javax.swing.JPanel {
             break;
             case JOptionPane.CANCEL_OPTION:
             break;
-        }
+        }*/
     }//GEN-LAST:event_btnImportActionPerformed
 
     private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
@@ -267,7 +285,16 @@ public class JPnBooks extends javax.swing.JPanel {
         DefaultTableModel dtmSach =(DefaultTableModel) tblSach.getModel();
      txtma.setText(dtmSach.getValueAt(i,0).toString());
      txtten.setText(dtmSach.getValueAt(i,1).toString());
-     txttg.setText(bus.getTenTG(Integer.parseInt(dtmSach.getValueAt(i,2).toString())));
+      String value = dtmSach.getValueAt(i, 2).toString();
+            if (value != null) {
+                for (int j = 0; j < jComboBox1.getItemCount(); j++) {
+                String item = (String) jComboBox1.getItemAt(j);
+                    if (value.equals(item)) {
+                        jComboBox1.setSelectedItem(item);
+                        break;
+                    }
+                }
+            }
      txtnxb.setText(bus.getTenNXB(Integer.parseInt(dtmSach.getValueAt(i,3).toString())));
      txtnam.setText(dtmSach.getValueAt(i, 4).toString());
      txtsl.setText(dtmSach.getValueAt(i, 4).toString());
@@ -276,7 +303,56 @@ public class JPnBooks extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tblSachMouseClicked
 
+public void loadtblSach(){
+    dtmsach.setRowCount(0);
+       listSach = sachBUS.getListSach();
+     Vector header = new Vector();
+        header.add("Mã");
+        header.add("Tên");
+        header.add("Mã tác giả");
+        header.add("Mã thể loại");
+        header.add("Ngày sinh");
+        header.add("Giới tính");
+        header.add("Số điện thoại");
+        if(dtmsach.getRowCount()==0){
+            dtmsach = new DefaultTableModel(header,0);
+            
+        }
+        for (sachDTO s : listSach) {
+            Vector vec = new Vector();
+            vec.add(s.getMa());
+            vec.add(s.getTen());
+            vec.add(s.getMaTacGia());
+            vec.add(s.getMaTheLoai());
+            vec.add(s.getMaNhaSanXuat());
+            vec.add(s.getNamSanXuat());
+            vec.add(s.getSoLuong());
+            vec.add(s.getAnh());
+            vec.add(s.getGia());
+            
+            dtmsach.addRow(vec);
+        }
+        tblSach.setModel(dtmsach);
+           
+        }
+private void changejcombobox1() throws Exception{
+        // Lấy model của combobox
+            tacgiaBUS bus = new tacgiaBUS();
+            DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox1.getModel();
 
+            // Xóa tất cả các phần tử hiện tại trong combobox
+            model.removeAllElements();
+
+            // Thêm các phần tử mới vào combobox
+              ArrayList<tacGiaDTO> tgList =  bus.getdstg();
+            for (tacGiaDTO tg : tgList){
+            model.addElement(tg.getHo()+" "+tg.getTen());
+            }
+
+
+            // Cập nhật combobox với model mới
+            jComboBox1.setModel(model);
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAdd;
     public java.awt.Button btnChoose;
@@ -284,7 +360,11 @@ public class JPnBooks extends javax.swing.JPanel {
     public javax.swing.JButton btnExport;
     public javax.swing.JButton btnImport;
     public javax.swing.JButton btnRemove;
+    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JComboBox<String> jComboBox2;
+    public javax.swing.JComboBox jComboBox3;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -300,9 +380,7 @@ public class JPnBooks extends javax.swing.JPanel {
     public javax.swing.JTextField txtgia;
     public javax.swing.JTextField txtma;
     public javax.swing.JTextField txtnam;
-    public javax.swing.JTextField txtnxb;
     public javax.swing.JTextField txtsl;
     public javax.swing.JTextField txtten;
-    public javax.swing.JTextField txttg;
     // End of variables declaration//GEN-END:variables
 }
