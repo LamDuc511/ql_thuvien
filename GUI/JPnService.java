@@ -19,6 +19,7 @@ public class JPnService extends javax.swing.JPanel {
      */
     public JPnService() throws Exception {
         initComponents();
+        
         JFrame muontra = new MuonTraGUI();
 
 

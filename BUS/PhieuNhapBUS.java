@@ -75,7 +75,7 @@ public class PhieuNhapBUS {
             int iNumb = 0;
             for (PhieuNhapDTO a : list_PM) 
                     mangMa.add(a.getMa());
-            while(1==1){
+            while(true){
                 if(!mangMa.contains(iNumb))
                     return iNumb;
                 iNumb++;
