@@ -6,11 +6,10 @@ package GUI;
 
 import DTO.PhieuNhapDTO;
 import BUS.CTPhieuNhapBUS;
-import BUS.PhieuNhapBUS;
 import BUS.sachBUS;
 import DTO.CTPhieuNhapDTO;
 import DTO.sachDTO;
-import Others.HamPhu;
+import java.text.DecimalFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,10 +41,9 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
     private PhieuNhapDTO pn = null;
     private CTPhieuNhapBUS bus=new CTPhieuNhapBUS();
     private sachBUS busSach=new sachBUS();
-    private PhieuNhapBUS busPhieuNhap=new PhieuNhapBUS();
-    private  HamPhu hamPhu=new HamPhu();
-    
     DefaultTableModel model=new DefaultTableModel();
+    
+
     public PhieuNhapDTO getPn() {
         return pn;
     }
@@ -360,15 +358,6 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
 
     private void btnHoanThanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanThanhActionPerformed
         // TODO add your handling code here:
-        pn.setTongTien(hamPhu.chuyenDoiSoTien(txtTong.getText()));
-        try {
-            if (busPhieuNhap.sua(pn)) {
-                System.out.println("Tong tien");
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
         this.dispose();
     }//GEN-LAST:event_btnHoanThanhActionPerformed
 
@@ -412,7 +401,6 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -476,7 +464,6 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public void update() {
         try {
-            
             // TODO add your handling code here:
 //            if(bus.getList_PM()==null){
             if (pn == null) {
@@ -507,16 +494,16 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
                 Vector row = new Vector();
                 row.add(sv.getMaPhieuNhap());
                 row.add(sv.getMaSach());
-                row.add(hamPhu.chuyenDoiChuoiTien( giaSach));
+                row.add(dinhDangSoTien( giaSach));
                 row.add(sv.getSoLuong());
-                row.add(hamPhu.chuyenDoiChuoiTien( sv.getDonGia()));
-                row.add(hamPhu.chuyenDoiChuoiTien(sv.getDonGia()*sv.getSoLuong())+" VND");
+                row.add(dinhDangSoTien( sv.getDonGia()));
+                row.add(dinhDangSoTien(sv.getDonGia()*sv.getSoLuong())+" VND");
                 model.addRow(row);
                 
                 sum += sv.getDonGia()*sv.getSoLuong();
 
             }
-            txtTong.setText(hamPhu.chuyenDoiChuoiTien(sum)+" VND");
+            txtTong.setText(dinhDangSoTien(sum)+" VND");
             tableCTPhieuNhap.setModel(model);
         } catch (Exception ex) {
             Logger.getLogger(PhieuMuonGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -538,6 +525,9 @@ public class CTPhieuNhapGUI extends javax.swing.JFrame {
         // Cập nhật combobox với model mới
         txtMaSach.setModel(model1);
     }
-    
+    public static String dinhDangSoTien(int soTien) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(soTien);
+    }
 }
 

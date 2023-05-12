@@ -115,7 +115,7 @@ public class PhieuPhatBUS {
             for (PhieuPhatDTO a : list_PM) {
                     mangMa.add(a.getMa());                    
             }
-            while(true){
+            while(1==1){
                 if(!mangMa.contains(iNumb))
                     return iNumb;
                 iNumb++;

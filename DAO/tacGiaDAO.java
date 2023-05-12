@@ -6,10 +6,8 @@ package DAO;
 
 import DTO.tacGiaDTO;
 import DTO.nhaXuatBanDTO;
-// import com.mysql.cj.protocol.Resultset;
+//import com.mysql.cj.protocol.Resultset;
 import java.util.ArrayList;
-import javax.swing.DefaultBoundedRangeModel;
-import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -27,7 +25,6 @@ public class tacGiaDAO {
     public tacGiaDAO() {
         if (con == null) {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ql_thuvien", "root", "");
 
             } catch (Exception e) {

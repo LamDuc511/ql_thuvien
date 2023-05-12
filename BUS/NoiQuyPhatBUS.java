@@ -82,7 +82,7 @@ public class NoiQuyPhatBUS {
             int iNumb = 0;
             for (NoiQuyPhatDTO a : list_PM) 
                     mangMa.add(a.getMa());
-            while(true){
+            while(1==1){
                 if(!mangMa.contains(iNumb))
                     return iNumb;
                 iNumb++;

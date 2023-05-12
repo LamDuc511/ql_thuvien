@@ -30,7 +30,7 @@ public class ReaderBUS {
         if(dsdg==null)dsdg=new ArrayList<ReaderDTO>();
         dsdg=data.docDSDG();
     }
-  public static ArrayList<ReaderDTO> getdsdg(){
+  public ArrayList<ReaderDTO> getdsdg(){
       if(dsdg==null)
           docDSDG();
       return ReaderBUS.dsdg;
